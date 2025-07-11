@@ -22,7 +22,7 @@
       if (textToCopy && navigator.clipboard) {
         navigator.clipboard.writeText(textToCopy).then(function() {
           // Успех
-          messageDiv.innerHTML = '<h1>? Информация скопирована!</h1><p>Можете вернуться в приложение.</p>';
+          messageDiv.innerHTML = '<h1>Информация скопирована!</h1><p>Можете вернуться в приложение.</p>';
         }, function(err) {
           // Ошибка
           messageDiv.innerHTML = '<h1>? Ошибка копирования</h1><p>' + err + '</p>';
