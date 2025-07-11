@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Копирование...</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; align-items: center; justify-content: center; height: 90vh; text-align: center; color: #333; }
+    h1 { font-size: 1.5em; }
+    p { color: grey; }
+  </style>
+</head>
+<body>
+  <div id="message"><h1>Копирование...</h1></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const params = new URLSearchParams(window.location.search);
+      const textToCopy = params.get('text');
+      const messageDiv = document.getElementById('message');
+
+      if (textToCopy && navigator.clipboard) {
+        navigator.clipboard.writeText(textToCopy).then(function() {
+          // Успех
+          messageDiv.innerHTML = '<h1>? Информация скопирована!</h1><p>Можете вернуться в приложение.</p>';
+        }, function(err) {
+          // Ошибка
+          messageDiv.innerHTML = '<h1>? Ошибка копирования</h1><p>' + err + '</p>';
+        });
+      } else {
+        messageDiv.innerHTML = '<h1>? Ошибка</h1><p>Текст для копирования не найден или браузер не поддерживает API буфера обмена.</p>';
+      }
+    });
+  </script>
+</body>
+</html>
